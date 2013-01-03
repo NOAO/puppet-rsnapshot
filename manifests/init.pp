@@ -127,20 +127,20 @@ class rsnapshot::server (
     require => Package['rsnapshot'],
   }
 
-  file { "/root/.ssh/rsnapshot_key":
-    ensure => present, mode => 0400,
-    owner => root, group => root,
-    source => 'puppet:///rsnapshot/rsnapshot_key';
-  }
+#  file { "/root/.ssh/rsnapshot_key":
+#    ensure => present, mode => 0400,
+#    owner => root, group => root,
+#    source => 'puppet:///rsnapshot/rsnapshot_key';
+#  }
 
-  $public_key = file('/etc/puppet/modules/rsnapshot/files/rsnapshot_key.pub')
-  
-  @@file_line { 'rsnapshot_public_key':
-    ensure => present,
-    path => '/root/.ssh/authorized_keys',
-    line => "from=\"127.0.0.1,$ip\",command=\"echo \\\"\$SSH_ORIGINAL_COMMAND\\\" | grep --quiet '^rsync --server --sender' && ionice -c3 \$SSH_ORIGINAL_COMMAND\" $public_key",
-    tag => 'rsnapshot',
-  }
+#  $public_key = file('/etc/puppet/modules/rsnapshot/files/rsnapshot_key.pub')
+#  
+#  @@file_line { 'rsnapshot_public_key':
+#    ensure => present,
+#    path => '/root/.ssh/authorized_keys',
+#    line => "from=\"127.0.0.1,$ip\",command=\"echo \\\"\$SSH_ORIGINAL_COMMAND\\\" | grep --quiet '^rsync --server --sender' && ionice -c3 \$SSH_ORIGINAL_COMMAND\" $public_key",
+#    tag => 'rsnapshot',
+#  }
 
   File <<| tag == 'rsnapshot' |>>
 

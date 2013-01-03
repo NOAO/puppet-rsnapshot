@@ -195,7 +195,7 @@ class rsnapshot::server (
 class rsnapshot::client (
   $excludes = [],
   $ip = $::fqdn,
-  ) {
+ ) inherits rsnapshot {
   
   File_line <<| tag == 'rsnapshot' |>>
 
@@ -206,4 +206,9 @@ class rsnapshot::client (
     require => Package['rsnapshot'],
     tag => 'rsnapshot',
   }
+}
+
+class rsnapshot (
+  $snapshot_root = $rsnapshot::params::snapshot_root,
+) inherits rsnapshot::params {
 }

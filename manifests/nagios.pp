@@ -15,7 +15,30 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-class rsnapshot (
-  $snapshot_root = $rsnapshot::params::snapshot_root,
-) inherits rsnapshot::params {
+#
+# == Class: rsnapshot::nagios
+#
+# Install a nagios plugin that checks the sanity of the rsnapshot
+# backups. It is designed to run on the machine hosting the backup and
+# should be called by nrpe or mrpe.
+#
+# === Example
+#
+# node 'nagios.domain.com' {
+#   class { 'rsnapshot::nagios': }
+# }
+#
+class rsnapshot::nagios {
+  file {
+    "/usr/lib/nagios":
+      ensure => directory, mode => 0755,
+      owner => root, group => root;
+    "/usr/lib/nagios/plugins":
+      ensure => directory, mode => 0755,
+      owner => root, group => root;
+    "/usr/lib/nagios/plugins/check_rsnapshot":
+      ensure => present, mode => 0555,
+      owner => root, group => root,
+      source => 'puppet:///rsnapshot/check_rsnapshot';
+  }
 }

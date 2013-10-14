@@ -1,3 +1,3 @@
 class rsnapshot::params {
-  $snapshot_root = '/var/cache/rsnapshot"
+  $snapshot_root = '/var/cache/rsnapshot'
 }

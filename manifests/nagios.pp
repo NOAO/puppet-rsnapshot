@@ -39,6 +39,6 @@ class rsnapshot::nagios {
     "/usr/lib/nagios/plugins/check_rsnapshot":
       ensure => present, mode => 0555,
       owner => root, group => root,
-      source => 'puppet:///rsnapshot/check_rsnapshot';
+      source => 'puppet:///modules/rsnapshot/check_rsnapshot';
   }
 }

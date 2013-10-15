@@ -61,21 +61,21 @@ class rsnapshot::server (
   file { "/etc/logrotate.d/rsnapshot":
     ensure => present, mode => 0444,
     owner => root, group => root,
-    source => 'puppet:///rsnapshot/logrotate.d/rsnapshot',
+    source => 'puppet:///modules/rsnapshot/logrotate.d/rsnapshot',
     require => Package['rsnapshot'],
   }
 
   file { "/etc/cron.d/rsnapshot":
     ensure => present, mode => 0444,
     owner => root, group => root,
-    source => 'puppet:///rsnapshot/cron.d/rsnapshot',
+    source => 'puppet:///modules/rsnapshot/cron.d/rsnapshot',
     require => Package['rsnapshot'],
   }
 
 #  file { "/root/.ssh/rsnapshot_key":
 #    ensure => present, mode => 0400,
 #    owner => root, group => root,
-#    source => 'puppet:///rsnapshot/rsnapshot_key';
+#    source => 'puppet:///modules/rsnapshot/rsnapshot_key';
 #  }
 
 #  $public_key = file('/etc/puppet/modules/rsnapshot/files/rsnapshot_key.pub')

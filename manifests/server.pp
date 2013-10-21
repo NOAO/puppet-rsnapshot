@@ -93,6 +93,17 @@ class rsnapshot::server (
 
   File <<| tag == 'rsnapshot' |>>
 
+  # purge unmanaged files so that backups stop when an exported resource is
+  # removed.
+  file { '/var/cache/rsnapshot':
+    ensure  => directory,
+    owner   => root,
+    group   => root,
+    mode    => '0755',
+    recurse => true,
+    purge   => true,
+  }
+
   file {
     '/var/run/rsnapshot/':
       ensure => directory,

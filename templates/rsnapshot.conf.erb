@@ -172,7 +172,7 @@ exclude	/var/cache
 exclude	/var/lib/nfs/rpc_pipefs
 exclude	/var/tmp
 <% @excludes.each do |exclude| -%>
-exclude	<%= @exclude -%>
+exclude	<%= exclude %>
 <% end -%>
 
 

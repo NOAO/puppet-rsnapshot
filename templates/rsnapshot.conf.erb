@@ -166,10 +166,13 @@ ssh_args	-i /root/.ssh/rsnapshot_key -o StrictHostKeyChecking=false
 #include	???
 exclude	/proc
 exclude	/sys
-exclude	/var/cache/rsnapshot
+exclude	/dev
+exclude	/tmp
+exclude	/var/cache
+exclude	/var/lib/nfs/rpc_pipefs
+exclude	/var/tmp
 <% @excludes.each do |exclude| -%>
 exclude	<%= @exclude -%>
-
 <% end -%>
 
 

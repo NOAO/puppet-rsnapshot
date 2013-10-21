@@ -29,9 +29,11 @@
 #
 class rsnapshot::puppetmaster {
   file {
-    "/etc/puppet/modules/rsnapshot/files":
-      ensure => directory, mode => 0700,
-      owner => puppet, group => nogroup,
+    '/etc/puppet/modules/rsnapshot/files':
+      ensure => directory,
+      mode   => '0700',
+      owner  => puppet,
+      group  => nogroup,
   }
 
   exec { 'create_key':

@@ -54,7 +54,7 @@
 #
 class rsnapshot::client (
   $excludes = [],
-  $ip = $::fqdn,
+  $ip       = $::fqdn,
 ) {
 
   $snapshot_root = $::rsnapshot::snapshot_root
@@ -62,10 +62,12 @@ class rsnapshot::client (
   File_line <<| tag == 'rsnapshot' |>>
 
   @@file { "/var/cache/rsnapshot/${::fqdn}.conf":
-    ensure => present,
-    mode => '0444', owner => root, group => root,
+    ensure  => present,
+    mode    => '0444',
+    owner   => root,
+    group   => root,
     content => template('rsnapshot/rsnapshot.conf.erb'),
     require => Package['rsnapshot'],
-    tag => 'rsnapshot',
+    tag     => 'rsnapshot',
   }
 }

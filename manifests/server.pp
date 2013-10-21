@@ -58,17 +58,21 @@ class rsnapshot::server (
     ensure => installed
   }
 
-  file { "/etc/logrotate.d/rsnapshot":
-    ensure => present, mode => 0444,
-    owner => root, group => root,
-    source => 'puppet:///modules/rsnapshot/logrotate.d/rsnapshot',
+  file { '/etc/logrotate.d/rsnapshot':
+    ensure  => present,
+    mode    => '0444',
+    owner   => root,
+    group   => root,
+    source  => 'puppet:///modules/rsnapshot/logrotate.d/rsnapshot',
     require => Package['rsnapshot'],
   }
 
-  file { "/etc/cron.d/rsnapshot":
-    ensure => present, mode => 0444,
-    owner => root, group => root,
-    source => 'puppet:///modules/rsnapshot/cron.d/rsnapshot',
+  file { '/etc/cron.d/rsnapshot':
+    ensure  => present,
+    mode    => '0444',
+    owner   => root,
+    group   => root,
+    source  => 'puppet:///modules/rsnapshot/cron.d/rsnapshot',
     require => Package['rsnapshot'],
   }
 
@@ -90,11 +94,15 @@ class rsnapshot::server (
   File <<| tag == 'rsnapshot' |>>
 
   file {
-    "/var/run/rsnapshot/":
+    '/var/run/rsnapshot/':
       ensure => directory,
-      mode => '0755', owner => root, group => root;
-    "/var/log/rsnapshot/":
+      mode   => '0755',
+      owner  => root,
+      group  => root;
+    '/var/log/rsnapshot/':
       ensure => directory,
-      mode => '0755', owner => root, group => root;
+      mode   => '0755',
+      owner  => root,
+      group  => root;
   }
 }

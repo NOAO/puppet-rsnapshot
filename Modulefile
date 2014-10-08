@@ -8,4 +8,4 @@ description 'rsnapshot module for Debian,
  configuring the target machines to have their entire
  file system saved with rsync over ssh'
 project_page 'http://redmine.the.re/projects/puppet-rsnapshot'
-dependency 'puppetlabs/stdlib', '2.x'
+dependency 'puppetlabs/stdlib'
